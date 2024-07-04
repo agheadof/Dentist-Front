@@ -1,0 +1,12 @@
+.AccountType {
+    font-family: "Gloria Hallelujah", cursive;
+    font-weight: 400;
+    font-style: normal;
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    color: #F3E8E8;
+    opacity: 60%;
+}
