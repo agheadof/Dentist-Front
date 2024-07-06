@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import { useFormik } from "formik";
+import * as yup from "yup";
 import { Link } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -15,8 +14,31 @@ import vector from '../../Assets/Vector.png'
 
 import { useLocation } from 'react-router-dom';
 
+const validationSchema = yup.object({
+    email: yup
+        .string('Enter your email')
+        .email('Enter a valid email')
+        .required('Email is required'),
+    password: yup
+        .string('Enter your password')
+        .min(8, 'Password should be of minimum 8 characters length')
+        .required('Password is required'),
+});
+
+
 
 const Login = () => {
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
 
     const location = useLocation();
     let job = ""
@@ -24,19 +46,12 @@ const Login = () => {
         if (location.state.job) {
             job = location.state.job
         }
-        console.log(job)
+
     }
     catch {
         console.error(" job value is null")
     }
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+
 
     return (
 
@@ -81,33 +96,34 @@ const Login = () => {
                         </Typography>
 
 
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: 1 }}>
                             <TextField
-                                margin="normal"
-                                required
                                 fullWidth
                                 id="email"
-                                label="Email Address"
                                 name="email"
-                                autoComplete="email"
+                                label="Email"
                                 autoFocus
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.touched.email && formik.errors.email}
                             />
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
+                                id="password"
                                 name="password"
                                 label="Password"
                                 type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" sx={{ color: "#2D9596" }} />}
-                                label="Remember me"
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.touched.password && formik.errors.password}
                             />
                             <Button
-
                                 type="submit"
                                 fullWidth
                                 variant="contained"
@@ -116,7 +132,7 @@ const Login = () => {
                                 Sign In
                             </Button>
 
-                            <Link to="/forgot" state={{ job }} color={"#2D9596"} textAlign={"center"}>
+                            <Link to="/forgot" state={{ job }} color={"#2D9596"} style={{ display: 'flex', justifyContent: 'center' }}>
                                 Forgot password?
                             </Link>
 

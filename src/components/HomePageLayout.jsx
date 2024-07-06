@@ -91,7 +91,12 @@ export default function HomePageLayout({ children, drawerItems }) {
                                 <MenuIcon />
                             </IconButton>
                             <Typography variant="h6" noWrap component="div">
-                                Responsive drawer
+                                <img src={vector} style={{
+                                    marginBottom: 2,
+                                    height: '40px',
+                                    width: '40px'
+                                }
+                                } />
                             </Typography>
                         </Toolbar>
                     </AppBar>
@@ -145,25 +150,25 @@ export default function HomePageLayout({ children, drawerItems }) {
                         </Drawer>
                     </Box>
                 </Box>
+
                 <Box
                     component="main"
                     className="MainContent"
                     sx={{
+
                         px: { xs: 2, md: 6 },
                         pt: { md: 3, },
                         pb: { xs: 2, sm: 2, md: 3 },
                         flex: 1,
                         display: 'flex',
                         flexDirection: 'column',
-                        minWidth: 0,
-                        height: '100dvh',
+                        width: '0',
+                        minHeight: '100dvh',
                         gap: 1,
                         bgcolor: "#EBFDFF"
 
                     }}
                 >
-
-
                     {children}
                 </Box>
             </Box>
