@@ -6,7 +6,7 @@ import './App.css';
 import Forgot from './layouts/auth/Forgot';
 import Code from './layouts/auth/code';
 import Reset from './layouts/auth/reset';
-import ReceptionHome from './layouts/ReceptionHome';
+import ReceptionHome from './layouts/Reception/ReceptionHome';
 
 function App() {
   return (

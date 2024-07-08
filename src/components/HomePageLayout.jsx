@@ -5,10 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 
 import vector from '../Assets/Vector.png'
-import { Container, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 
 
 
@@ -18,7 +17,7 @@ import { ArrowBack, Logout } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
-export default function HomePageLayout({ children, drawerItems }) {
+const HomePageLayout = React.memo(function HomePageLayout({ children, drawerItems }) {
 
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);
@@ -175,4 +174,6 @@ export default function HomePageLayout({ children, drawerItems }) {
 
         </>
     );
-}
+});
+
+export default HomePageLayout
