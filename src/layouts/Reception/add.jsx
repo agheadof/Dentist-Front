@@ -116,7 +116,7 @@ export default function Add() {
                             </Grid>
                             <Typography component={'h2'} variant='h6' sx={{ mt: 8, bgcolor: '#2D9596', color: 'white', width: '180px', textAlign: 'center' }}>Date info</Typography>
                             <Divider sx={{ borderWidth: '1px', borderColor: 'black' }}></Divider>
-                            <Grid container columnGap={3} rowGap={10} sx={{ display: 'flex', alignItems: 'center', mt: 3 }}>
+                            <Grid container columnGap={3} rowGap={5} sx={{ display: 'flex', alignItems: 'center', mt: 3 }}>
                                 <Grid item xs={2}>
                                     <Typography sx={{ py: 1, bgcolor: 'lightgray', color: 'black', width: '100%', textAlign: 'center', boxShadow: '3px 3px 5px gray' }}>Doctor</Typography>
                                 </Grid>
@@ -128,7 +128,6 @@ export default function Add() {
                                         id="doctor"
                                         name="doctor"
                                         sx={{ width: '200px' }}
-                                        label='Doctor'
                                         select
                                         value={formik.values.doctor}
                                         onChange={formik.handleChange}
@@ -167,9 +166,13 @@ export default function Add() {
                                         id="time"
                                         name="time"
                                         type='time'
+                                        select
                                         value={formik.values.time}
                                         onChange={formik.handleChange}
                                     >
+                                        <MenuItem value={'10:20 am'}>10:20 am</MenuItem>
+                                        <MenuItem value={'11:30 am'}>11:00 am</MenuItem>
+                                        <MenuItem value={'14:30 pm'}>14:30 pm</MenuItem>
                                     </TextField>
                                 </Grid>
 

@@ -10,27 +10,40 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 
 
-const renderActionColumn = () => {
-    // Buttons Logic
-    return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <DrButton size={'small'} style={{ margin: '5px' }}>View</DrButton>
-            <DrButton size={'small'} style={{ margin: '5px' }}><DeleteOutlineOutlined /></DrButton>
-            <DrButton size={'small'} style={{ margin: '5px' }}><EditNoteOutlined /></DrButton>
-        </Box>
-    )
-}
 
 export default function Home({ ...props }) {
     let theme = props.theme
     let customToolbar = props.customToolbar
     let CustomPagination = props.CustomPagination
+    let setCurrentTarget = props.setCurrentTarget
+    let setPatient = props.setPatient
+    let handlePrev = props.handlePrev
+    let currentTarget = props.currentTarget
+
+
+
 
     const PAGE_SIZE = 5
     const [paginationModel, setPaginationModel] = React.useState({
         pageSize: PAGE_SIZE,
         page: 0,
     });
+
+    const renderActionColumn = (value) => {
+        // Buttons Logic
+        const handleView = (value) => {
+            handlePrev(currentTarget);
+            setCurrentTarget('view')
+            setPatient(value)
+        }
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => handleView(value.row)}>View</DrButton>
+                <DrButton size={'small'} style={{ margin: '5px' }}><DeleteOutlineOutlined /></DrButton>
+                <DrButton size={'small'} style={{ margin: '5px' }}><EditNoteOutlined /></DrButton>
+            </Box>
+        )
+    }
 
     const columns = [
         {
@@ -50,7 +63,7 @@ export default function Home({ ...props }) {
             minWidth: '120', resizable: false, headerAlign: 'center'
         },
         { field: 'date', headerName: 'Booking Date', minWidth: '120', resizable: false, },
-        { field: 'action', renderCell: renderActionColumn, headerName: 'Action', minWidth: '220', resizable: false, headerAlign: 'center' },
+        { field: 'action', renderCell: (value) => renderActionColumn(value), headerName: 'Action', minWidth: '220', resizable: false, headerAlign: 'center' },
 
 
     ];
@@ -58,17 +71,17 @@ export default function Home({ ...props }) {
     const rows = [
         {
             id: '6',
-            date: 'Feb 3, 2023',
             firstName: ' Maya',
             lastName: 'Michael',
             doctor: 'Aragon',
+            sex: 'female',
+            address: 'Homs',
             phone: '+963912345678',
             date: 'Feb 3, 2023',
             time: '13:05'
         },
         {
             id: '5',
-            date: 'Feb 3, 2023',
             firstName: 'aya',
             lastName: 'Michael',
             doctor: 'Aragon',
@@ -77,7 +90,6 @@ export default function Home({ ...props }) {
             time: '12:05'
         }, {
             id: '4',
-            date: 'Feb 3, 2023',
             firstName: ' Maya',
             lastName: 'Michael',
             doctor: 'Aragon',
@@ -87,7 +99,6 @@ export default function Home({ ...props }) {
         },
         {
             id: '3',
-            date: 'Feb 3, 2023',
             firstName: 'aya',
             lastName: 'Michael',
             doctor: 'Aragon',
@@ -96,7 +107,6 @@ export default function Home({ ...props }) {
             time: '12:05'
         }, {
             id: '2',
-            date: 'Feb 3, 2023',
             firstName: ' Maya',
             lastName: 'Michael',
             doctor: 'Aragon',
@@ -106,7 +116,6 @@ export default function Home({ ...props }) {
         },
         {
             id: '1',
-            date: 'Feb 3, 2023',
             firstName: 'aya',
             lastName: 'Michael',
             doctor: 'Aragon',

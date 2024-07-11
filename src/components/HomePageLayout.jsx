@@ -17,7 +17,9 @@ import { ArrowBack, Logout } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
-const HomePageLayout = React.memo(function HomePageLayout({ children, drawerItems }) {
+const HomePageLayout = React.memo(function HomePageLayout({ children, drawerItems, ...props }) {
+    let prevTarget = props.prevTarget
+    let setCurrentTarget = props.setCurrentTarget
 
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);
@@ -38,7 +40,18 @@ const HomePageLayout = React.memo(function HomePageLayout({ children, drawerItem
     };
 
     const drawer = (<>
-        <IconButton aria-label="back" style={{ position: 'absolute', color: "#2D9596" }}>
+        <IconButton aria-label="back" style={{ position: 'absolute', color: "#2D9596" }} onClick={() => {
+            let last = prevTarget[prevTarget.length - 1]
+
+            if (last !== undefined) {
+                prevTarget.pop()
+                setCurrentTarget(last);
+                console.log(last)
+
+            }
+            else setCurrentTarget('home')
+
+        }}>
             <ArrowBack />
         </IconButton>
         <Box

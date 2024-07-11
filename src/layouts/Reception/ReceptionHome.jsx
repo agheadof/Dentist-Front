@@ -25,12 +25,16 @@ import { createTheme } from '@mui/material/styles';
 import Profile from './profile';
 import Add from './add';
 import Home from './home';
+import ViewPatient from './viewPatient';
+import Pay from './pay';
 
 export default function ReceptionHome() {
 
 
 
     let [currentTarget, setCurrentTarget] = React.useState('home')
+
+    let [patient, setPatient] = React.useState({})
 
 
     const theme = createTheme({
@@ -44,6 +48,11 @@ export default function ReceptionHome() {
         },
     });
 
+
+    let [prevTarget, setPrevTarget] = React.useState(['home'])
+    const handlePrev = (prev) => {
+        setPrevTarget([...prevTarget, prev]);
+    }
 
     function CustomPagination() {
         const apiRef = useGridApiContext();
@@ -84,13 +93,13 @@ export default function ReceptionHome() {
 
     return (
         <>
-            <HomePageLayout drawerItems={
+            <HomePageLayout setCurrentTarget={setCurrentTarget} prevTarget={prevTarget} drawerItems={
                 <>
 
 
                     <List style={{ color: "#2D9596" }}>
                         <ListItem key={"profile"} disablePadding >
-                            <ListItemButton onClick={() => { setCurrentTarget('profile') }} selected={currentTarget === 'profile' ? true : false}>
+                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('profile') }} selected={currentTarget === 'profile' ? true : false}>
                                 <ListItemIcon>
                                     <AccountCircleOutlinedIcon fontSize="large" style={{ color: "#2D9596" }} />
                                 </ListItemIcon>
@@ -98,7 +107,7 @@ export default function ReceptionHome() {
                             </ListItemButton>
                         </ListItem>
                         <ListItem key={"home"} disablePadding>
-                            <ListItemButton onClick={() => { setCurrentTarget('home') }} selected={currentTarget === 'home' ? true : false}>
+                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('home') }} selected={currentTarget === 'home' ? true : false}>
                                 <ListItemIcon>
                                     <HomeOutlined fontSize="large" style={{ color: "#2D9596" }} />
                                 </ListItemIcon>
@@ -106,7 +115,7 @@ export default function ReceptionHome() {
                             </ListItemButton>
                         </ListItem>
                         <ListItem key={"add"} disablePadding>
-                            <ListItemButton onClick={() => { setCurrentTarget('add') }} selected={currentTarget === 'add' ? true : false}>
+                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('add') }} selected={currentTarget === 'add' ? true : false}>
                                 <ListItemIcon>
                                     <AddCircleOutlineOutlinedIcon fontSize="large" style={{ color: "#2D9596" }} />
                                 </ListItemIcon>
@@ -118,7 +127,7 @@ export default function ReceptionHome() {
                 </>
             }>
                 {(currentTarget === 'home' ? true : false) &&
-                    <Home {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination }} />
+                    <Home {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget, setPatient: setPatient, handlePrev: handlePrev, currentTarget: currentTarget }} />
                 }
                 {(currentTarget === 'profile' ? true : false) &&
                     <Profile {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination }} />
@@ -126,6 +135,12 @@ export default function ReceptionHome() {
 
                 {(currentTarget === 'add' ? true : false) &&
                     <Add />
+                }
+                {(currentTarget === 'view' ? true : false) &&
+                    <ViewPatient {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                {(currentTarget === 'pay' ? true : false) &&
+                    <Pay {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination }} />
                 }
             </HomePageLayout>
         </>
