@@ -33,7 +33,6 @@ export default function ReceptionHome() {
 
 
     let [currentTarget, setCurrentTarget] = React.useState('home')
-
     let [patient, setPatient] = React.useState({})
 
 

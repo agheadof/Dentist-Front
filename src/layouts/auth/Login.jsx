@@ -12,6 +12,7 @@ import image from '../../Assets/login.jpg'
 import vector from '../../Assets/Vector.png'
 
 import { useLocation } from 'react-router-dom';
+import authApi from '../../Api/authApi';
 
 const validationSchema = yup.object({
     email: yup
@@ -27,18 +28,6 @@ const validationSchema = yup.object({
 
 
 const Login = () => {
-
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: validationSchema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    });
-
     const location = useLocation();
     let job = ""
     try {
@@ -50,6 +39,20 @@ const Login = () => {
     catch {
         console.error(" job value is null")
     }
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            job: ''
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            let data = { job: job, email: values.email, password: values.password }
+            authApi.login(data)
+        },
+    });
+
+
 
 
     return (

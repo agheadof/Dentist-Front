@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import * as React from 'react';
 import DrButton from '../../components/DrButton'
 import { DeleteOutlineOutlined, EditNoteOutlined } from '@mui/icons-material';
@@ -19,8 +19,6 @@ export default function Home({ ...props }) {
     let setPatient = props.setPatient
     let handlePrev = props.handlePrev
     let currentTarget = props.currentTarget
-
-
 
 
     const PAGE_SIZE = 5
