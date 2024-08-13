@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import AccountType from './layouts/auth/AccountType';
@@ -9,6 +7,8 @@ import Forgot from './layouts/auth/Forgot';
 import Code from './layouts/auth/code';
 import Reset from './layouts/auth/reset';
 import ReceptionHome from './layouts/Reception/ReceptionHome';
+import AdminHome from './layouts/Admin/AdminHome';
+import DoctorHome from './layouts/Doctor/DoctorHome';
 
 function App() {
   return (
@@ -22,6 +22,9 @@ function App() {
             <Route exact path='/code' element={<Code />} />
             <Route exact path='/reset' element={<Reset />} />
             <Route exact path='/home' element={<ReceptionHome />} />
+            <Route exact path='/admin' element={<AdminHome />} />
+            <Route exact path='/doctor' element={<DoctorHome />} />
+
 
 
 

@@ -5,8 +5,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HomeOutlined from '@mui/icons-material/HomeOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import {
     gridPageCountSelector,
@@ -23,20 +24,21 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { createTheme } from '@mui/material/styles';
 
 import Profile from './profile';
-import Add from './add';
 import Home from './home';
-import ViewPatient from './viewPatient';
-import Pay from './pay';
+import DashBoard from './dashBoard';
+import AddUser from './addUser';
+import Finance from './finance';
+import AddInvoice from './addInvoice';
+import Tratment from './tratment';
+import UserDoctor from './userDoctor';
+import UserEmployee from './userEmployee';
+import UserPatient from './userPatient';
+import AddExpense from './addExpense';
 
-export default function ReceptionHome() {
 
-
-
+export default function AdminHome() {
     let [currentTarget, setCurrentTarget] = React.useState('home')
-
     let [patient, setPatient] = React.useState({})
-
-
     const theme = createTheme({
         mixins: {
             MuiDataGrid: {
@@ -49,7 +51,7 @@ export default function ReceptionHome() {
     });
 
 
-    let [prevTarget, setPrevTarget] = React.useState(['home'])
+    let [prevTarget, setPrevTarget] = React.useState(['profile'])
     const handlePrev = (prev) => {
         setPrevTarget([...prevTarget, prev]);
     }
@@ -106,6 +108,14 @@ export default function ReceptionHome() {
                                 <ListItemText primary={"profile"} />
                             </ListItemButton>
                         </ListItem>
+                        <ListItem key={"dashboard"} disablePadding>
+                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('dashboard') }} selected={currentTarget === 'dashboard' ? true : false}>
+                                <ListItemIcon>
+                                    <DashboardIcon fontSize="large" style={{ color: "#2D9596" }} />
+                                </ListItemIcon>
+                                <ListItemText primary={"dashboard"} />
+                            </ListItemButton>
+                        </ListItem>
                         <ListItem key={"home"} disablePadding>
                             <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('home') }} selected={currentTarget === 'home' ? true : false}>
                                 <ListItemIcon>
@@ -114,12 +124,13 @@ export default function ReceptionHome() {
                                 <ListItemText primary={"home"} />
                             </ListItemButton>
                         </ListItem>
-                        <ListItem key={"add"} disablePadding>
-                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('add') }} selected={currentTarget === 'add' ? true : false}>
+
+                        <ListItem key={"finance"} disablePadding>
+                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('finance') }} selected={currentTarget === 'finance' ? true : false}>
                                 <ListItemIcon>
-                                    <AddCircleOutlineOutlinedIcon fontSize="large" style={{ color: "#2D9596" }} />
+                                    <AttachMoneyIcon fontSize="large" style={{ color: "#2D9596" }} />
                                 </ListItemIcon>
-                                <ListItemText primary={"add"} />
+                                <ListItemText primary={"finance"} />
                             </ListItemButton>
                         </ListItem>
                     </List>
@@ -133,14 +144,33 @@ export default function ReceptionHome() {
                     <Profile {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination }} />
                 }
 
-                {(currentTarget === 'add' ? true : false) &&
-                    <Add />
+                {(currentTarget === 'dashboard' ? true : false) &&
+                    <DashBoard {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget, setPatient: setPatient, handlePrev: handlePrev, currentTarget: currentTarget }} />
+
                 }
-                {(currentTarget === 'view' ? true : false) &&
-                    <ViewPatient {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                {(currentTarget === 'finance' ? true : false) &&
+                    <Finance {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
                 }
-                {(currentTarget === 'pay' ? true : false) &&
-                    <Pay {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination }} />
+                {(currentTarget === 'user' ? true : false) &&
+                    <AddUser {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                {(currentTarget === 'tratment' ? true : false) &&
+                    <Tratment {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                {(currentTarget === 'doctor' ? true : false) &&
+                    <UserDoctor {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                {(currentTarget === 'employee' ? true : false) &&
+                    <UserEmployee {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                {(currentTarget === 'patient' ? true : false) &&
+                    <UserPatient {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                {(currentTarget === 'invoice' ? true : false) &&
+                    <AddInvoice {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                {(currentTarget === 'expenses' ? true : false) &&
+                    <AddExpense {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
                 }
             </HomePageLayout>
         </>

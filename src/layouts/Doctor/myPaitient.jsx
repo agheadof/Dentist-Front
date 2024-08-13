@@ -11,7 +11,7 @@ import { ThemeProvider } from '@mui/material/styles';
 
 
 
-export default function Home({ ...props }) {
+export default function MyPaitient({ ...props }) {
     let theme = props.theme
     let customToolbar = props.customToolbar
     let CustomPagination = props.CustomPagination
@@ -29,106 +29,92 @@ export default function Home({ ...props }) {
         page: 0,
     });
 
-    const renderActionColumn = (value) => {
-        // Buttons Logic
-        const handleView = (value) => {
-            handlePrev(currentTarget);
-            setCurrentTarget('view')
-            setPatient(value)
-        }
-        return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => handleView(value.row)}>View</DrButton>
-                <DrButton size={'small'} style={{ margin: '5px' }}><DeleteOutlineOutlined /></DrButton>
-                <DrButton size={'small'} style={{ margin: '5px' }}><EditNoteOutlined /></DrButton>
-            </Box>
-        )
-    }
+   
 
     const columns = [
         {
-            field: 'fullName',
-            headerName: 'Full name',
+            field: 'name',
+            headerName: 'Patient name',
             sortable: false,
             minWidth: 160,
-            valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`, headerAlign: 'center'
+            headerAlign: 'center'
         },
-        { field: 'id', headerName: 'ID', minWidth: '130', headerAlign: 'center' },
-        { field: 'phone', headerName: 'Phone', minWidth: '130', resizable: false, headerAlign: 'center' },
-        { field: 'doctor', headerName: 'Doctor', minWidth: '120', headerAlign: 'center' },
+        { field: 'cost', headerName: 'Cost',  headerAlign: 'center' },
+        { field: 'profit', headerName: 'Profit' },
         {
-            field: 'time',
-            headerName: 'Time',
-            type: 'time',
-            minWidth: '120', resizable: false, headerAlign: 'center'
+            field: 'date',
+            headerName: 'Date',
+           
         },
-        { field: 'date', headerName: 'Booking Date', minWidth: '120', resizable: false, },
-        { field: 'action', renderCell: (value) => renderActionColumn(value), headerName: 'Action', minWidth: '220', resizable: false, headerAlign: 'center' },
-
-
+        {
+            field: 'dprecnt',
+            headerName: 'Doctor precent',
+            sortable: false,
+            minWidth: 160,
+            headerAlign: 'center'
+        },{
+            field: 'cprecnt',
+            headerName: 'center precnt',
+            sortable: false,
+            minWidth: 160,
+            headerAlign: 'center'
+        },
     ];
 
     const rows = [
         {
-            id: '6',
-            firstName: ' Maya',
-            lastName: 'Michael',
+           id:'1',
+            name: 'raghad',
+            cost:'250000',
+            profit:"xxxx",
+            date: 'Feb 3, 2023',
+            dprecnt:'xxxx',
+            cprecnt:'xxxx',
+            firstName: ' raghad',
+            lastName: 'yousef',
             doctor: 'Aragon',
             sex: 'female',
             address: 'Homs',
             phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '13:05'
+          
+         
         },
         {
-            id: '5',
-            firstName: 'aya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            phone: '+963912345678',
+            id:'3',
+            name: 'raghad',
+            cost:'250000',
+            profit:"xxxx",
             date: 'Feb 3, 2023',
-            time: '12:05'
-        }, {
-            id: '4',
-            firstName: ' Maya',
-            lastName: 'Michael',
+            dprecnt:'xxxx',
+            cprecnt:'xxxx',
+            firstName: ' raghad',
+            lastName: 'yousef',
             doctor: 'Aragon',
+            sex: 'female',
+            address: 'Homs',
             phone: '+963912345678',
+         
+        },   {
+            id:'2',
+            name: 'raghad',
+            cost:'250000',
+            profit:"xxxx",
             date: 'Feb 3, 2023',
-            time: '13:05'
-        },
-        {
-            id: '3',
-            firstName: 'aya',
-            lastName: 'Michael',
+            dprecnt:'manal',
+            cprecnt:'xxxx',
+            firstName: ' raghad',
+            lastName: 'yousef',
             doctor: 'Aragon',
+            sex: 'female',
+            address: 'Homs',
             phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '12:05'
-        }, {
-            id: '2',
-            firstName: ' Maya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '13:05'
-        },
-        {
-            id: '1',
-            firstName: 'aya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '12:05'
-        },]
-
+         
+        }, ]
 
 
     return (
         <>
-            <Typography component={'h2'} variant='h4' sx={{ mt: 10 }}>Home Page</Typography>
+            <Typography component={'h2'} variant='h4' sx={{ mt: 10 }}>My patient :</Typography>
             <ThemeProvider theme={theme}>
                 <DataGrid
 
@@ -176,6 +162,7 @@ export default function Home({ ...props }) {
                     checkboxSelection
                     disableRowSelectionOnClick />
             </ThemeProvider>
+        
         </>
     )
 }

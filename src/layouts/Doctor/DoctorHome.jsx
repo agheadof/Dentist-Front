@@ -5,7 +5,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
-import HomeOutlined from '@mui/icons-material/HomeOutlined';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import {
@@ -23,16 +23,18 @@ import PaginationItem from '@mui/material/PaginationItem';
 import { createTheme } from '@mui/material/styles';
 
 import Profile from './profile';
-import Add from './add';
-import Home from './home';
+
 import ViewPatient from './viewPatient';
-import Pay from './pay';
+import  DashBoard  from './dashBoard';
+import MyPaitient from './myPaitient';
+import Tratment from './tratment';
 
-export default function ReceptionHome() {
+
+export default function DoctorHome() {
 
 
 
-    let [currentTarget, setCurrentTarget] = React.useState('home')
+    let [currentTarget, setCurrentTarget] = React.useState('profile')
 
     let [patient, setPatient] = React.useState({})
 
@@ -106,41 +108,35 @@ export default function ReceptionHome() {
                                 <ListItemText primary={"profile"} />
                             </ListItemButton>
                         </ListItem>
-                        <ListItem key={"home"} disablePadding>
-                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('home') }} selected={currentTarget === 'home' ? true : false}>
+                        <ListItem key={"dashboard"} disablePadding>
+                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('dashBoard') }} selected={currentTarget === 'home' ? true : false}>
                                 <ListItemIcon>
-                                    <HomeOutlined fontSize="large" style={{ color: "#2D9596" }} />
+                                    <DashboardIcon fontSize="large" style={{ color: "#2D9596" }} />
                                 </ListItemIcon>
-                                <ListItemText primary={"home"} />
+                                <ListItemText primary={"dashboard"} />
                             </ListItemButton>
                         </ListItem>
-                        <ListItem key={"add"} disablePadding>
-                            <ListItemButton onClick={() => { handlePrev(currentTarget); setCurrentTarget('add') }} selected={currentTarget === 'add' ? true : false}>
-                                <ListItemIcon>
-                                    <AddCircleOutlineOutlinedIcon fontSize="large" style={{ color: "#2D9596" }} />
-                                </ListItemIcon>
-                                <ListItemText primary={"add"} />
-                            </ListItemButton>
-                        </ListItem>
+                       
                     </List>
 
                 </>
             }>
-                {(currentTarget === 'home' ? true : false) &&
-                    <Home {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget, setPatient: setPatient, handlePrev: handlePrev, currentTarget: currentTarget }} />
+                {(currentTarget === 'dashBoard' ? true : false) &&
+                    <DashBoard {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget, setPatient: setPatient, handlePrev: handlePrev, currentTarget: currentTarget }} />
                 }
                 {(currentTarget === 'profile' ? true : false) &&
                     <Profile {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination }} />
                 }
 
-                {(currentTarget === 'add' ? true : false) &&
-                    <Add />
-                }
+               
                 {(currentTarget === 'view' ? true : false) &&
                     <ViewPatient {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
                 }
-                {(currentTarget === 'pay' ? true : false) &&
-                    <Pay {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination }} />
+                {(currentTarget === 'paitients' ? true : false) &&
+                    <MyPaitient {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                  {(currentTarget === 'tratment' ? true : false) &&
+                    <Tratment {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget  }} />
                 }
             </HomePageLayout>
         </>
