@@ -25,14 +25,13 @@ import { createTheme } from '@mui/material/styles';
 import Profile from './profile';
 
 import ViewPatient from './viewPatient';
-import  DashBoard  from './dashBoard';
+import DashBoard from './dashBoard';
 import MyPaitient from './myPaitient';
 import Tratment from './tratment';
 
+import receptionFakeData from './doctorFakedata.json';
 
 export default function DoctorHome() {
-
-
 
     let [currentTarget, setCurrentTarget] = React.useState('profile')
 
@@ -86,12 +85,8 @@ export default function DoctorHome() {
         );
     }
 
-
-
-
-
-
-
+    // استخدام البيانات الوهمية من ملف JSON
+    const { patients, appointments, doctors, dashboardData } = receptionFakeData;
 
     return (
         <>
@@ -116,27 +111,29 @@ export default function DoctorHome() {
                                 <ListItemText primary={"dashboard"} />
                             </ListItemButton>
                         </ListItem>
-                       
+
                     </List>
 
                 </>
             }>
                 {(currentTarget === 'dashBoard' ? true : false) &&
-                    <DashBoard {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget, setPatient: setPatient, handlePrev: handlePrev, currentTarget: currentTarget }} />
+                    <DashBoard {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget, setPatient: setPatient, handlePrev: handlePrev, currentTarget: currentTarget, dashboardData: dashboardData }} />
                 }
                 {(currentTarget === 'profile' ? true : false) &&
-                    <Profile {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination }} />
+                    <Profile {...{
+                        theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, doctorProfile: doctors[0]
+                    }} />
                 }
 
-               
+
                 {(currentTarget === 'view' ? true : false) &&
                     <ViewPatient {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
                 }
                 {(currentTarget === 'paitients' ? true : false) &&
-                    <MyPaitient {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                    <MyPaitient {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget, patients: patients }} />
                 }
-                  {(currentTarget === 'tratment' ? true : false) &&
-                    <Tratment {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget  }} />
+                {(currentTarget === 'tratment' ? true : false) &&
+                    <Tratment {...{ theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
                 }
             </HomePageLayout>
         </>

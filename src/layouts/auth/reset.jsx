@@ -8,30 +8,25 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import image from '../../Assets/login.jpg'
 import reset from '../../Assets/reset.png'
-
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Reset = () => {
-    const location = useLocation();
-    let job = ""
-    try {
-        if (location.state.job) {
-            job = location.state.job
-        }
-        console.log(job)
-    }
-    catch {
-        console.error(" job value is null")
-    }
+    const navigate = useNavigate();
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const password = data.get('password');
+
+        // محاكاة نجاح إعادة تعيين كلمة المرور
+        console.log('تم إعادة تعيين كلمة المرور بنجاح:', password);
+
+        // التنقل إلى صفحة تسجيل الدخول بعد ثانيتين
+        setTimeout(() => {
+            navigate('/');
+        }, 2000);
     };
 
     return (

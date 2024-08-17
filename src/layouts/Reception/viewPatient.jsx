@@ -48,7 +48,7 @@ export default function ViewPatient({ ...props }) {
         { field: 'tooth', headerName: 'Tooth', minWidth: '120', resizable: false, headerAlign: 'center' },
         { field: 'teatment', headerName: 'Teatment', minWidth: '120', resizable: false, headerAlign: 'center' },
         { field: 'status', headerName: 'Status', minWidth: '120', resizable: false, headerAlign: 'center' },
-        { field: 'note', headerName: 'Note', minWidth: '120', resizable: false, headerAlign: 'center' },
+        { field: 'note', headerName: 'Note', minWidth: '170', resizable: false, headerAlign: 'center' },
         { field: 'date', headerName: 'Date', minWidth: '150', headerAlign: 'center' },
 
     ];
@@ -67,6 +67,18 @@ export default function ViewPatient({ ...props }) {
     const [modal2, setModal2] = React.useState(false);
     const openModal2 = () => setModal2(true);
     const closeeModal2 = () => setModal2(false);
+
+    const patientHistory = [
+        { id: 1, tooth: '16', teatment: 'Filling', status: 'Completed', note: 'Regular checkup', date: '2023-05-15' },
+        { id: 2, tooth: '24', teatment: 'Root Canal', status: 'In Progress', note: 'Follow-up required', date: '2023-06-22' },
+        { id: 3, tooth: '32', teatment: 'Extraction', status: 'Scheduled', note: 'Wisdom tooth removal', date: '2023-07-10' },
+    ];
+
+    const payments = [
+        { id: 1, date: '2023-05-15', amount: '$150' },
+        { id: 2, date: '2023-06-22', amount: '$300' },
+        { id: 3, date: '2023-07-10', amount: '$200' },
+    ];
 
     return (
         <>
@@ -100,7 +112,7 @@ export default function ViewPatient({ ...props }) {
                                     key={''}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Age: &emsp; {patient.age}</Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Address: &emsp; {patient.address}</Typography>
                                         <Divider variant='middle' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
@@ -111,10 +123,7 @@ export default function ViewPatient({ ...props }) {
                                 <TableRow
                                     key={''}
                                 >
-                                    <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Address: &emsp; {patient.address}</Typography>
-                                        <Divider variant='middle' />
-                                    </TableCell>
+
                                     <TableCell sx={{ border: 'none' }}>
                                         <Typography sx={{ display: 'inline-block' }}>Phone: &emsp; {patient.phone}</Typography>
                                         <Divider variant='middle' />
@@ -169,7 +178,9 @@ export default function ViewPatient({ ...props }) {
                                     pagination: CustomPagination,
                                 }}
                                 checkboxSelection
-                                disableRowSelectionOnClick />
+                                disableRowSelectionOnClick
+                                rows={patientHistory}
+                            />
                         </ThemeProvider>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'start', alignItems: 'center' }}>
@@ -292,7 +303,9 @@ export default function ViewPatient({ ...props }) {
                                                 pagination: CustomPagination,
                                             }}
                                             checkboxSelection
-                                            disableRowSelectionOnClick />
+                                            disableRowSelectionOnClick
+                                            rows={payments}
+                                        />
                                     </ThemeProvider>
                                 </CardContent>
                             </Card>

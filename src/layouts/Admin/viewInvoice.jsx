@@ -13,7 +13,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import DrButton from '../../components/DrButton'
 
 
-export default function Profile({ ...props }) {
+export default function ViewInvoice({ ...props }) {
     let theme = props.theme
     let customToolbar = props.customToolbar
     let CustomPagination = props.CustomPagination
@@ -25,57 +25,25 @@ export default function Profile({ ...props }) {
     });
 
     const financeCol = [
-        { field: 'date', headerName: 'Booking Date', minWidth: '150', headerAlign: 'center' },
-        { field: 'amount', headerName: 'Amount', minWidth: '120', resizable: false, headerAlign: 'center' },
-        { field: 'note', headerName: 'Note', minWidth: '120', resizable: false, headerAlign: 'center' },
+        { field: 'item', headerName: ' Item', minWidth: '150', headerAlign: 'center' },
+        { field: 'number', headerName: 'Number', minWidth: '120', resizable: false, headerAlign: 'center' },
+        { field: 'pieceprice', headerName: "Piece's price", minWidth: '120', resizable: false, headerAlign: 'center' },
+        { field: 'itemsprice', headerName: 'Items price', minWidth: '120', resizable: false, headerAlign: 'center' },
 
     ];
     let date = new Date()
     const financeRows = [
         {
             id: '1',
-            date: '2024-03-15',
-            amount: '$5,000',
-            note: 'Monthly Salary'
-        },
-        {
-            id: '2',
-            date: '2024-02-15',
-            amount: '$5,000',
-            note: 'Monthly Salary'
-        },
-        {
-            id: '3',
-            date: '2024-01-15',
-            amount: '$5,000',
-            note: 'Monthly Salary'
-        },
-        {
-            id: '4',
-            date: '2023-12-15',
-            amount: '$5,500',
-            note: 'Salary + Bonus'
-        },
-        {
-            id: '5',
-            date: '2023-11-15',
-            amount: '$5,000',
-            note: 'Monthly Salary'
-        },
-    ];
+            date: date.toISOString().split('T')[0],
+            amount: '300,000',
+            note: 'Regular'
 
-    const profileData = {
-        name: 'John Smith',
-        email: 'john.smith@example.com',
-        address: '123 Main St, New York, NY 10001',
-        salary: '$5,000 per month',
-        phone: '+1 (555) 123-4567',
-        sex: 'Male'
-    };
+        },]
 
     return (
         <>
-            <Link to={'/reset'} state={{ job: 'recep' }} style={{ display: 'flex', justifyContent: 'end', textDecoration: 'none' }}>
+            <Link to={'/forgot'} state={{ job: 'recep' }} style={{ display: 'flex', justifyContent: 'end', textDecoration: 'none' }}>
                 <DrButton>Change Password</DrButton>
             </Link>
             <Grid container>
@@ -90,38 +58,38 @@ export default function Profile({ ...props }) {
                         <Table sx={{ minWidth: 650 }} >
                             <TableBody >
                                 <TableRow
-                                    key={'name-email'}
+                                    key={''}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Name: {profileData.name}</Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Laboratory Name: </Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Email: {profileData.email}</Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Phone1: </Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                 </TableRow>
                                 <TableRow
-                                    key={'address-salary'}
+                                    key={''}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Address: {profileData.address}</Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Phone2: </Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Salary: {profileData.salary}</Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Phone3: </Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                 </TableRow>
                                 <TableRow
-                                    key={'phone-sex'}
+                                    key={''}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Phone: {profileData.phone}</Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Address: </Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Sex: {profileData.sex}</Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Date: </Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                 </TableRow>

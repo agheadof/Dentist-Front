@@ -54,7 +54,7 @@ const AccountType = () => {
             </Grid>
             <Grid container textAlign={'center'} style={{ position: 'absolute', top: '60%' }}>
                 <Grid item xs={4} >
-                    <Link to='/login' state={{ job: 'doc' }}  >
+                    <Link to='/login' state={{ job: 'Dr' }}  >
 
                         <IconButton display="flex" justifyContent="flex-end" >
 
@@ -89,7 +89,7 @@ const AccountType = () => {
 
                 <Grid item xs={4}>
 
-                    <Link to='/login' state={{ job: 'recep' }}  >
+                    <Link to='/login' state={{ job: 'reception' }}  >
                         <IconButton display="flex" justifyContent="flex-start">
                             <img src={circle} style={{
                                 position: "relative",

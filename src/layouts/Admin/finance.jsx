@@ -1,9 +1,8 @@
-
-
-
 import * as React from 'react';
 import DrButton from '../../components/DrButton'
 import { DeleteOutlineOutlined, EditNoteOutlined } from '@mui/icons-material';
+import finance from './adminFakeData.json'
+
 import {
     Avatar, Box, Typography, Grid, Button,
     Collapse,
@@ -19,7 +18,7 @@ import {
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import { ThemeProvider } from '@mui/material/styles';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 
 import { Bar } from 'react-chartjs-2';
@@ -32,21 +31,18 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+
 import { Card, CardContent } from '@mui/material';
 
 export default function Finance({ ...props }) {
-    const financeData = [
-        { fName: 'expenses', cost: 700 },
-        { fName: 'bills', cost: 900 },
-        { fName: 'doctors share', cost: 200 },
-        { fName: 'salaries', cost: 500 },
-    ];
+    const [financeData, setFinanceData] = useState(finance);
+
     const chartData = {
-        labels: financeData.map(item => item.fName),
+        labels: financeData.financeSummary?.map(item => item.fName) || [],
         datasets: [
             {
                 label: 'Costs',
-                data: financeData.map(item => item.cost),
+                data: financeData.financeSummary?.map(item => item.cost) || [],
                 backgroundColor: 'rgba(75, 192, 192, 0.5)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
@@ -54,13 +50,12 @@ export default function Finance({ ...props }) {
         ],
     };
 
-
     let theme = props.theme
     let customToolbar = props.customToolbar
     let CustomPagination = props.CustomPagination
     let setCurrentTarget = props.setCurrentTarget
     let setPatient = props.setPatient
-    let handlePrev = props.handlePrev
+
     let currentTarget = props.currentTarget
 
 
@@ -75,8 +70,22 @@ export default function Finance({ ...props }) {
     const renderActionColumn = (value) => {
         // Buttons Logic
         const handleView = (value) => {
-            handlePrev(currentTarget);
-            setCurrentTarget(value.type)
+
+            setCurrentTarget('viewinvoice');
+
+        }
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => handleView(value.row)}>View</DrButton>
+
+            </Box>
+        )
+    }
+    const renderActionColumn2 = (value) => {
+        // Buttons Logic
+        const handleView = (value) => {
+
+            setCurrentTarget("expenses");
             setPatient(value)
         }
         return (
@@ -99,13 +108,14 @@ export default function Finance({ ...props }) {
         {
             field: 'date',
             headerName: 'Date',
-            type: 'date',
-            minWidth: '50', resizable: false, headerAlign: 'center'
+            type: 'text',
+            minWidth: '50', resizable: false, headerAlign: 'center',
+            valueGetter: (params) => new Date(params.value)
         },
         {
             field: 'Total Price',
             headerName: 'Total Price',
-            type: 'number',
+            type: 'text',
             minWidth: '50', resizable: false, headerAlign: 'center'
         },
         { field: 'action', renderCell: (value) => renderActionColumn(value), headerName: 'Action', minWidth: '50', resizable: false, headerAlign: 'center' },
@@ -122,7 +132,8 @@ export default function Finance({ ...props }) {
             field: 'date',
             headerName: 'Date',
             type: 'date',
-            minWidth: '75', resizable: false, headerAlign: 'center'
+            minWidth: '75', resizable: false, headerAlign: 'center',
+            valueGetter: (params) => new Date(params.value)
         },
         {
             field: 'Cost',
@@ -132,7 +143,7 @@ export default function Finance({ ...props }) {
         },
 
         { field: 'note', headerName: 'Note', minWidth: '75', resizable: false, headerAlign: 'center' },
-        { field: 'action', renderCell: (value) => renderActionColumn(value), headerName: 'Action', minWidth: '50', resizable: false, headerAlign: 'center' },
+        { field: 'action', renderCell: (value) => renderActionColumn2(value), headerName: 'Action', minWidth: '50', resizable: false, headerAlign: 'center' },
 
 
 
@@ -147,7 +158,7 @@ export default function Finance({ ...props }) {
     return (
         <>
             <Grid container spacing={1}>
-                <Grid item sx={7}>
+                <Grid item xs={8}>
                     <ThemeProvider theme={theme}>
                         <h2>Invoices</h2>
                         <DataGrid
@@ -182,6 +193,7 @@ export default function Finance({ ...props }) {
                                 },
                             }}
                             disableColumnMenu
+                            rows={financeData.invoices}
                             columns={columns}
                             initialState={{
                                 pagination: {
@@ -197,7 +209,7 @@ export default function Finance({ ...props }) {
                             checkboxSelection
                             disableRowSelectionOnClick />
                         <div style={{ display: 'flex', justifyContent: 'end' }}>
-                            <DrButton style={{ marginTop: '5px', marginBottom: '20px' }} onClick={() => setCurrentTarget("invoice")}>Add</DrButton>
+                            <DrButton style={{ marginTop: '5px', marginBottom: '20px' }} onClick={() => setCurrentTarget("addlaboratory")}>Add</DrButton>
 
                         </div>
                     </ThemeProvider>
@@ -235,6 +247,7 @@ export default function Finance({ ...props }) {
                                 },
                             }}
                             disableColumnMenu
+                            rows={financeData.expenses}
                             columns={financeCol}
                             initialState={{
                                 pagination: {
@@ -258,8 +271,8 @@ export default function Finance({ ...props }) {
 
                 </Grid>
 
-                <Grid item sx={5} >
-                    <Card sx={{ mt: 10, ml: 2, width: "400px" }}>
+                <Grid item xs={3} >
+                    <Card sx={{ mt: 10, ml: 2, width: "300px" }}>
                         <CardContent >
                             <Typography variant="h6" gutterBottom>
                                 Costs

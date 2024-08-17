@@ -34,11 +34,44 @@ export default function Profile({ ...props }) {
     const financeRows = [
         {
             id: '1',
-            date: date.toISOString().split('T')[0],
+            date: '2024-03-15',
             amount: '300,000',
-            note: 'Regular'
+            note: 'Regular Salary'
+        },
+        {
+            id: '2',
+            date: '2024-03-01',
+            amount: '50,000',
+            note: 'Performance Bonus'
+        },
+        {
+            id: '3',
+            date: '2024-02-15',
+            amount: '300,000',
+            note: 'Regular Salary'
+        },
+        {
+            id: '4',
+            date: '2024-01-15',
+            amount: '300,000',
+            note: 'Regular Salary'
+        },
+        {
+            id: '5',
+            date: '2023-12-15',
+            amount: '300,000',
+            note: 'Regular Salary'
+        },
+    ];
 
-        },]
+    const profileData = {
+        name: 'John Smith',
+        email: 'john.smith@example.com',
+        address: '123 Main St, Anytown, USA',
+        salary: '$300,000 per year',
+        phone: '+1 (555) 123-4567',
+        sex: 'Male'
+    };
 
     return (
         <>
@@ -57,46 +90,46 @@ export default function Profile({ ...props }) {
                         <Table sx={{ minWidth: 650 }} >
                             <TableBody >
                                 <TableRow
-                                    key={''}
+                                    key={'name-email'}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Name: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Name: {profileData.name}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Email: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Email: {profileData.email}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                 </TableRow>
                                 <TableRow
-                                    key={''}
+                                    key={'address-salary'}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Address: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Address: {profileData.address}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Salary: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Salary: {profileData.salary}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                 </TableRow>
                                 <TableRow
-                                    key={''}
+                                    key={'phone-sex'}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Phone: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Phone: {profileData.phone}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Sex: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Sex: {profileData.sex}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                 </TableRow>
 
                             </TableBody>
                         </Table>
-                      
-                     
+
+
                     </Box>
                 </Grid>
             </Grid>

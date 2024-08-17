@@ -1,0 +1,273 @@
+{
+    "patients": [
+        {
+            "id": "1",
+            "name": "John Smith",
+            "date": "Mar 15, 2024",
+            "time": "09:30",
+            "action": "view",
+            "firstName": "John",
+            "lastName": "Smith",
+            "doctor": "Dr. Johnson",
+            "sex": "male",
+            "address": "New York",
+            "phone": "+1234567890",
+            "age": "35"
+        },
+        {
+            "id": "2",
+            "name": "Jane Smith",
+            "date": "Mar 16, 2024",
+            "time": "10:00",
+            "action": "view",
+            "firstName": "Jane",
+            "lastName": "Smith",
+            "doctor": "Dr. Williams",
+            "sex": "female",
+            "address": "Los Angeles",
+            "phone": "+1987654321",
+            "age": "28"
+        },
+        {
+            "id": "3",
+            "name": "Mike Johnson",
+            "date": "Mar 17, 2024",
+            "time": "11:30",
+            "action": "view",
+            "firstName": "Mike",
+            "lastName": "Johnson",
+            "doctor": "Dr. Brown",
+            "sex": "male",
+            "address": "Chicago",
+            "phone": "+1122334455",
+            "age": "42"
+        },
+        {
+            "id": "4",
+            "name": "Emily Brown",
+            "date": "Mar 18, 2024",
+            "time": "14:00",
+            "action": "view",
+            "firstName": "Emily",
+            "lastName": "Brown",
+            "doctor": "Dr. Davis",
+            "sex": "female",
+            "address": "Houston",
+            "phone": "+1555666777",
+            "age": "31"
+        },
+        {
+            "id": "5",
+            "name": "David Lee",
+            "date": "Mar 19, 2024",
+            "time": "15:30",
+            "action": "view",
+            "firstName": "David",
+            "lastName": "Lee",
+            "doctor": "Dr. Wilson",
+            "sex": "male",
+            "address": "San Francisco",
+            "phone": "+1999888777",
+            "age": "50"
+        }
+    ],
+    "myPatients": [
+        {
+            "id": "1",
+            "name": "John Smith",
+            "cost": "250000",
+            "profit": "50000",
+            "date": "Feb 3, 2023",
+            "dprecnt": "30%",
+            "cprecnt": "70%",
+            "firstName": "John",
+            "lastName": "Smith",
+            "doctor": "Dr. Johnson",
+            "sex": "male",
+            "address": "New York",
+            "phone": "+1234567890"
+        },
+        {
+            "id": "2",
+            "name": "Emma Brown",
+            "cost": "180000",
+            "profit": "40000",
+            "date": "Mar 15, 2023",
+            "dprecnt": "25%",
+            "cprecnt": "75%",
+            "firstName": "Emma",
+            "lastName": "Brown",
+            "doctor": "Dr. Williams",
+            "sex": "female",
+            "address": "London",
+            "phone": "+4477123456"
+        },
+        {
+            "id": "3",
+            "name": "Michael Lee",
+            "cost": "300000",
+            "profit": "60000",
+            "date": "Apr 22, 2023",
+            "dprecnt": "35%",
+            "cprecnt": "65%",
+            "firstName": "Michael",
+            "lastName": "Lee",
+            "doctor": "Dr. Davis",
+            "sex": "male",
+            "address": "Toronto",
+            "phone": "+16471234567"
+        }
+    ],
+    "appointments": [
+        {
+            "id": 1,
+            "patientId": 1,
+            "date": "2023-06-15",
+            "time": "09:00",
+            "status": "Confirmed"
+        },
+        {
+            "id": 2,
+            "patientId": 2,
+            "date": "2023-06-15",
+            "time": "10:30",
+            "status": "Pending"
+        },
+        {
+            "id": 3,
+            "patientId": 3,
+            "date": "2023-06-16",
+            "time": "14:00",
+            "status": "Confirmed"
+        }
+    ],
+    "doctors": [
+        {
+            "id": 1,
+            "name": "Dr. Sarah Williams",
+            "specialization": "Cardiologist",
+            "experience": "10 years"
+        },
+        {
+            "id": 2,
+            "name": "Dr. Michael Chen",
+            "specialization": "Pediatrician",
+            "experience": "8 years"
+        }
+    ],
+    "dashboardData": {
+        "totalPatients": 150,
+        "appointmentsToday": 12,
+        "pendingReports": 5
+    },
+    "doctorInfo": {
+        "name": "Dr.Bashar",
+        "email": "jana@example.com",
+        "phone": "096541238"
+    },
+    "statistics": {
+        "totalPatients": 413,
+        "newPatients": 63,
+        "oldPatients": 350
+    },
+    "visitorData": [
+        {
+            "date": "2024-03-15",
+            "visitors": 32
+        },
+        {
+            "date": "2024-03-16",
+            "visitors": 28
+        },
+        {
+            "date": "2024-03-17",
+            "visitors": 12
+        },
+        {
+            "date": "2024-03-18",
+            "visitors": 22
+        }
+    ],
+    "doctorPrInfo": {
+        "name": "Dr. Ahmed Hassan",
+        "email": "ahmed.hassan@example.com",
+        "address": "123 Main St, Cairo, Egypt",
+        "salary": "50,000 EGP",
+        "phone": "+20 123 456 7890",
+        "sex": "Male"
+    },
+    "financialRecords": [
+        {
+            "id": "1",
+            "date": "2024-03-15",
+            "amount": "300,000",
+            "note": "Regular"
+        },
+        {
+            "id": "2",
+            "date": "2024-03-01",
+            "amount": "250,000",
+            "note": "Bonus"
+        },
+        {
+            "id": "3",
+            "date": "2024-02-15",
+            "amount": "300,000",
+            "note": "Regular"
+        },
+        {
+            "id": "4",
+            "date": "2024-02-01",
+            "amount": "300,000",
+            "note": "Regular"
+        },
+        {
+            "id": "5",
+            "date": "2024-01-15",
+            "amount": "300,000",
+            "note": "Regular"
+        }
+    ],
+    "treatments": [
+        {
+            "id": 1,
+            "date": "2023-03-15",
+            "treatment": "filling",
+            "tooth": "11",
+            "status": "completed",
+            "note": "Composite filling on upper right central incisor"
+        },
+        {
+            "id": 2,
+            "date": "2023-03-15",
+            "treatment": "extraction",
+            "tooth": "36",
+            "status": "pending",
+            "note": "Scheduled extraction of lower left first molar"
+        },
+        {
+            "id": 3,
+            "date": "2023-03-15",
+            "treatment": "cleaning",
+            "tooth": "24",
+            "status": "completed",
+            "note": "Professional cleaning performed on upper left first premolar"
+        },
+        {
+            "id": 4,
+            "date": "2023-03-15",
+            "treatment": "filling",
+            "tooth": "47",
+            "status": "canceled",
+            "note": "Patient rescheduled filling for lower right second molar"
+        },
+        {
+            "id": 5,
+            "date": "2023-03-15",
+            "treatment": "cleaning",
+            "tooth": "21",
+            "status": "pending",
+            "note": "Scheduled cleaning for upper left central incisor"
+        }
+    ]
+}

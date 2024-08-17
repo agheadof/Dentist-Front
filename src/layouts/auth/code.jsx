@@ -8,32 +8,21 @@ import Typography from '@mui/material/Typography';
 import image from '../../Assets/login.jpg'
 import code from '../../Assets/code.png'
 import OTP from '../../components/OTP';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Code = () => {
 
     const [otp, setOtp] = React.useState('');
+    const navigate = useNavigate();
 
-    const location = useLocation();
-    let job = ""
-    try {
-        if (location.state.job) {
-            job = location.state.job
-        }
-        console.log(job)
-    }
-    catch {
-        console.error(" job value is null")
-    }
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        // محاكاة نجاح التحقق من الرمز
+        console.log('تم إدخال الرمز:', otp);
+        navigate('/reset');
     };
 
     return (

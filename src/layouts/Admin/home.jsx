@@ -126,7 +126,7 @@ export default function Home({ ...props }) {
 
     return (
         <>
-            <Typography component={'h2'} variant='h4' sx={{ mt: 10 }}>My patient :</Typography>
+            <Typography component={'h2'} variant='h4' sx={{ mt: 10 }}>Users in the complex :</Typography>
             <ThemeProvider theme={theme}>
                 <DataGrid
 

@@ -14,9 +14,13 @@ export default function Pay({ ...props }) {
     let customToolbar = props.customToolbar
     let CustomPagination = props.CustomPagination
 
-
-
-
+    const fakeData = [
+        { id: 1, date: '2024-03-15', treatment: 'Dental Cleaning', status: 'unpaid', tooth: 'All', price: '$100', doctor: 'Dr. Smith' },
+        { id: 2, date: '2024-03-16', treatment: 'Root Canal', status: 'paid', tooth: '16', price: '$500', doctor: 'Dr. Johnson' },
+        { id: 3, date: '2024-03-17', treatment: 'Filling', status: 'unpaid', tooth: '24', price: '$150', doctor: 'Dr. Brown' },
+        { id: 4, date: '2024-03-18', treatment: 'Crown', status: 'paid', tooth: '36', price: '$800', doctor: 'Dr. Davis' },
+        { id: 5, date: '2024-03-19', treatment: 'Extraction', status: 'unpaid', tooth: '48', price: '$200', doctor: 'Dr. Wilson' },
+    ];
 
     const PAGE_SIZE = 5
     const [paginationModel, setPaginationModel] = React.useState({
@@ -98,7 +102,9 @@ export default function Pay({ ...props }) {
                     pagination: CustomPagination,
                 }}
                 checkboxSelection
-                disableRowSelectionOnClick />
+                disableRowSelectionOnClick
+                rows={fakeData}
+            />
         </ThemeProvider>
     )
 }

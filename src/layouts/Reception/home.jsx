@@ -1,5 +1,4 @@
-
-import * as React from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import DrButton from '../../components/DrButton'
 import { DeleteOutlineOutlined, EditNoteOutlined } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
@@ -8,10 +7,9 @@ import {
     gridClasses,
 } from '@mui/x-data-grid';
 import { ThemeProvider } from '@mui/material/styles';
+import fakeData from './fakeData.json';
 
-
-
-export default function Home({ ...props }) {
+const Home = forwardRef(({ rows, setRows, ...props }, ref) => {
     let theme = props.theme
     let customToolbar = props.customToolbar
     let CustomPagination = props.CustomPagination
@@ -20,14 +18,35 @@ export default function Home({ ...props }) {
     let handlePrev = props.handlePrev
     let currentTarget = props.currentTarget
 
+    useImperativeHandle(ref, () => ({
+        updatePatient: (updatedPatient) => {
+            console.log("تحديث المريض في Home:", updatedPatient);
+            setRows(prevRows => prevRows.map(row =>
+                row.id === updatedPatient.id ? { ...row, ...updatedPatient } : row
+            ));
+        }
+    }));
 
-
+    // استخدم useEffect لتتبع التغييرات في rows
+    React.useEffect(() => {
+        console.log("تم تحديث rows:", rows);
+    }, [rows]);
 
     const PAGE_SIZE = 5
-    const [paginationModel, setPaginationModel] = React.useState({
+    const [paginationModel, setPaginationModel] = useState({
         pageSize: PAGE_SIZE,
         page: 0,
     });
+
+    const handleEdit = (row) => {
+        console.log("تحرير الصف:", row);
+        const updatedRows = rows.map(item =>
+            item.id === row.id ? { ...item, ...row } : item
+        );
+        setRows(updatedRows);
+        setCurrentTarget('edit');
+        setPatient(row);
+    };
 
     const renderActionColumn = (value) => {
         // Buttons Logic
@@ -36,11 +55,15 @@ export default function Home({ ...props }) {
             setCurrentTarget('view')
             setPatient(value)
         }
+        const handleDelete = (id) => {
+            setRows(prevRows => prevRows.filter(row => row.id !== id));
+        };
+
         return (
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => handleView(value.row)}>View</DrButton>
-                <DrButton size={'small'} style={{ margin: '5px' }}><DeleteOutlineOutlined /></DrButton>
-                <DrButton size={'small'} style={{ margin: '5px' }}><EditNoteOutlined /></DrButton>
+                <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => handleDelete(value.row.id)}><DeleteOutlineOutlined /></DrButton>
+                <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => handleEdit(value.row)}><EditNoteOutlined /></DrButton>
             </Box>
         )
     }
@@ -67,64 +90,6 @@ export default function Home({ ...props }) {
 
 
     ];
-
-    const rows = [
-        {
-            id: '6',
-            firstName: ' Maya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            sex: 'female',
-            address: 'Homs',
-            phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '13:05'
-        },
-        {
-            id: '5',
-            firstName: 'aya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '12:05'
-        }, {
-            id: '4',
-            firstName: ' Maya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '13:05'
-        },
-        {
-            id: '3',
-            firstName: 'aya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '12:05'
-        }, {
-            id: '2',
-            firstName: ' Maya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '13:05'
-        },
-        {
-            id: '1',
-            firstName: 'aya',
-            lastName: 'Michael',
-            doctor: 'Aragon',
-            phone: '+963912345678',
-            date: 'Feb 3, 2023',
-            time: '12:05'
-        },]
-
-
 
     return (
         <>
@@ -178,4 +143,6 @@ export default function Home({ ...props }) {
             </ThemeProvider>
         </>
     )
-}
+})
+
+export default Home;

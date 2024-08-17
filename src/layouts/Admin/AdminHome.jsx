@@ -9,6 +9,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HomeOutlined from '@mui/icons-material/HomeOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import AddLaboratory from './addLaboratory';
+import Laboratory from './laboratory';
 import {
     gridPageCountSelector,
     gridPageSelector,
@@ -28,15 +30,16 @@ import Home from './home';
 import DashBoard from './dashBoard';
 import AddUser from './addUser';
 import Finance from './finance';
-import AddInvoice from './addInvoice';
 import Tratment from './tratment';
 import UserDoctor from './userDoctor';
 import UserEmployee from './userEmployee';
 import UserPatient from './userPatient';
 import AddExpense from './addExpense';
+import ViewInvoice from './viewInvoice';
 
 
 export default function AdminHome() {
+    const LaboratoryArray =[];
     let [currentTarget, setCurrentTarget] = React.useState('home')
     let [patient, setPatient] = React.useState({})
     const theme = createTheme({
@@ -166,11 +169,18 @@ export default function AdminHome() {
                 {(currentTarget === 'patient' ? true : false) &&
                     <UserPatient {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
                 }
-                {(currentTarget === 'invoice' ? true : false) &&
-                    <AddInvoice {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
-                }
+               
                 {(currentTarget === 'expenses' ? true : false) &&
                     <AddExpense {...{ patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                {(currentTarget === 'laboratory' ? true : false) &&
+                    <Laboratory {...{LaboratoryArray:LaboratoryArray, patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                 {(currentTarget === 'addlaboratory' ? true : false) &&
+                    <AddLaboratory {...{LaboratoryArray:LaboratoryArray, patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
+                }
+                 {(currentTarget === 'viewinvoice' ? true : false) &&
+                    <ViewInvoice {...{LaboratoryArray:LaboratoryArray, patient: patient, theme: theme, customToolbar: customToolbar, CustomPagination: CustomPagination, setCurrentTarget: setCurrentTarget }} />
                 }
             </HomePageLayout>
         </>

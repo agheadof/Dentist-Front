@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -27,29 +27,53 @@ const validationSchema = yup.object({
 
 
 const Login = () => {
-
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: validationSchema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    });
-
     const location = useLocation();
     let job = ""
     try {
         if (location.state.job) {
             job = location.state.job
+
         }
 
     }
     catch {
         console.error(" job value is null")
     }
+    const navigate = useNavigate();
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            job: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: async (values) => {
+            try {
+                // Simulate successful login
+                console.log('Login successful:', values);
+
+                // Navigate based on job value
+                switch (job) {
+                    case 'reception':
+                        navigate('/reception');
+                        break;
+                    case 'admin':
+                        navigate('/admin');
+                        break;
+                    case 'Dr':
+                        navigate('/doctor');
+                        break;
+                    default:
+                        console.error('Unknown job');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+            }
+        },
+    });
+
+
 
 
     return (

@@ -9,7 +9,7 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 
 import { Box, Typography, TextField, FormControl, InputLabel, Select, MenuItem, Button, Grid } from '@mui/material';
-
+import treatmentsData from './doctorFakedata.json';
 
 export default function Tratment({ ...props }) {
     let theme = props.theme
@@ -32,6 +32,7 @@ export default function Tratment({ ...props }) {
     const [treatment, setTreatment] = React.useState('');
     const [status, setStatus] = React.useState('');
     const [note, setNote] = React.useState('');
+    const [treatments, setTreatments] = React.useState(treatmentsData.treatments);
 
     const handleToothChange = (event) => {
         setTooth(event.target.value);
@@ -51,17 +52,28 @@ export default function Tratment({ ...props }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Handle form submission logic here
+        const newTreatment = {
+            id: treatments.length + 1,
+            tooth,
+            treatment,
+            status,
+            note
+        };
+        setTreatments([...treatments, newTreatment]);
+        setTooth('');
+        setTreatment('');
+        setStatus('');
+        setNote('');
     };
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{  margin:15, border: '1px solid #ccc', borderRadius: 2,width:"80%" ,bgcolor:"white" }}>
+            <Box sx={{ margin: 15, border: '1px solid #ccc', borderRadius: 2, width: "80%", bgcolor: "white" }}>
                 <Typography variant="h6" gutterBottom sx={{ bgcolor: "#2D9596", textAlign: "center", color: "white", width: "100%" }}>
                     Add Treatment
                 </Typography>
                 <form onSubmit={handleSubmit}>
-                    <Grid container spacing={2} sx={{margin:4}}>
+                    <Grid container spacing={2} sx={{ margin: 4 }}>
                         <Grid item xs={5}>
                             <TextField
                                 label="Tooth"
@@ -117,14 +129,31 @@ export default function Tratment({ ...props }) {
 
 
 
-                 
-                    <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center' ,width:"100%" ,padding:2 }}>
-                <DrButton size={'small'} style={{ margin: '5px' }} type='submit'>OK</DrButton>
-                <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => setCurrentTarget("view")}>Cancel</DrButton>
 
-            </Box>
-           
+                    <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', width: "100%", padding: 2 }}>
+                        <DrButton size={'small'} style={{ margin: '5px' }} type='submit'>OK</DrButton>
+                        <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => setCurrentTarget("view")}>Cancel</DrButton>
+
+                    </Box>
+
                 </form>
+            </Box>
+            <Box sx={{ margin: 2, border: '1px solid #ccc', borderRadius: 2, width: "80%", bgcolor: "white" }}>
+                <Typography variant="h6" gutterBottom sx={{ bgcolor: "#2D9596", textAlign: "center", color: "white", width: "100%" }}>
+                    Treatment List
+                </Typography>
+                <DataGrid
+                    rows={treatments}
+                    columns={[
+                        { field: 'tooth', headerName: 'Tooth', width: 100 },
+                        { field: 'treatment', headerName: 'Treatment', width: 150 },
+                        { field: 'status', headerName: 'Status', width: 120 },
+                        { field: 'note', headerName: 'Note', width: 300 },
+                    ]}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    disableSelectionOnClick
+                />
             </Box>
         </ThemeProvider>
     );

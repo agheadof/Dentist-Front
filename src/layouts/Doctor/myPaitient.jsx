@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import DrButton from '../../components/DrButton'
 import { DeleteOutlineOutlined, EditNoteOutlined } from '@mui/icons-material';
@@ -8,6 +7,7 @@ import {
     gridClasses,
 } from '@mui/x-data-grid';
 import { ThemeProvider } from '@mui/material/styles';
+import patientData from './doctorFakedata.json';
 
 
 
@@ -29,7 +29,7 @@ export default function MyPaitient({ ...props }) {
         page: 0,
     });
 
-   
+
 
     const columns = [
         {
@@ -39,12 +39,12 @@ export default function MyPaitient({ ...props }) {
             minWidth: 160,
             headerAlign: 'center'
         },
-        { field: 'cost', headerName: 'Cost',  headerAlign: 'center' },
+        { field: 'cost', headerName: 'Cost', headerAlign: 'center' },
         { field: 'profit', headerName: 'Profit' },
         {
             field: 'date',
             headerName: 'Date',
-           
+
         },
         {
             field: 'dprecnt',
@@ -52,7 +52,7 @@ export default function MyPaitient({ ...props }) {
             sortable: false,
             minWidth: 160,
             headerAlign: 'center'
-        },{
+        }, {
             field: 'cprecnt',
             headerName: 'center precnt',
             sortable: false,
@@ -61,60 +61,11 @@ export default function MyPaitient({ ...props }) {
         },
     ];
 
-    const rows = [
-        {
-           id:'1',
-            name: 'raghad',
-            cost:'250000',
-            profit:"xxxx",
-            date: 'Feb 3, 2023',
-            dprecnt:'xxxx',
-            cprecnt:'xxxx',
-            firstName: ' raghad',
-            lastName: 'yousef',
-            doctor: 'Aragon',
-            sex: 'female',
-            address: 'Homs',
-            phone: '+963912345678',
-          
-         
-        },
-        {
-            id:'3',
-            name: 'raghad',
-            cost:'250000',
-            profit:"xxxx",
-            date: 'Feb 3, 2023',
-            dprecnt:'xxxx',
-            cprecnt:'xxxx',
-            firstName: ' raghad',
-            lastName: 'yousef',
-            doctor: 'Aragon',
-            sex: 'female',
-            address: 'Homs',
-            phone: '+963912345678',
-         
-        },   {
-            id:'2',
-            name: 'raghad',
-            cost:'250000',
-            profit:"xxxx",
-            date: 'Feb 3, 2023',
-            dprecnt:'manal',
-            cprecnt:'xxxx',
-            firstName: ' raghad',
-            lastName: 'yousef',
-            doctor: 'Aragon',
-            sex: 'female',
-            address: 'Homs',
-            phone: '+963912345678',
-         
-        }, ]
-
+    const rows = patientData.myPatients;
 
     return (
         <>
-            <Typography component={'h2'} variant='h4' sx={{ mt: 10 }}>My patient :</Typography>
+            <Typography component={'h2'} variant='h4' sx={{ mt: 10 }}>My patients:</Typography>
             <ThemeProvider theme={theme}>
                 <DataGrid
 
@@ -162,7 +113,7 @@ export default function MyPaitient({ ...props }) {
                     checkboxSelection
                     disableRowSelectionOnClick />
             </ThemeProvider>
-        
+
         </>
     )
 }

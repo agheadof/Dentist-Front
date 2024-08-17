@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -10,29 +10,22 @@ import { Send } from '@mui/icons-material'
 import image from '../../Assets/login.jpg'
 import forgot from '../../Assets/forgot.png'
 
-import { useLocation } from 'react-router-dom';
-
 
 const Forgot = () => {
-    const location = useLocation();
-    let job = ""
-    try {
-        if (location.state.job) {
-            job = location.state.job
-        }
-        console.log(job)
-    }
-    catch {
-        console.error(" job value is null")
-    }
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const email = data.get('email');
+
+        // محاكاة نجاح إرسال البريد الإلكتروني
+        console.log(`تم إرسال رسالة إعادة تعيين كلمة المرور إلى: ${email}`);
+
+        // التنقل إلى صفحة إدخال الرمز بعد تأخير قصير لمحاكاة طلب الشبكة
+        setTimeout(() => {
+            navigate('/code');
+        }, 100);
     };
 
     return (
@@ -95,17 +88,17 @@ const Forgot = () => {
                                 autoComplete="email"
                                 autoFocus
                             />
-                            <Link to="/code">
-                                <Button
-                                    endIcon={<Send />}
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{ bgcolor: "#2D9596", mt: 3, mb: 2, ":hover": { bgcolor: "gray" } }}
-                                >
-                                    Send
-                                </Button>
-                            </Link>
+
+                            <Button
+                                endIcon={<Send />}
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ bgcolor: "#2D9596", mt: 3, mb: 2, ":hover": { bgcolor: "gray" } }}
+                            >
+                                Send
+                            </Button>
+
                         </Box>
 
                     </Box>

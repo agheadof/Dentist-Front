@@ -9,17 +9,17 @@ import Typography from '@mui/material/Typography';
 import vector from '../Assets/Vector.png'
 import { IconButton } from '@mui/material';
 
-
-
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { ArrowBack, Logout } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
 const HomePageLayout = React.memo(function HomePageLayout({ children, drawerItems, ...props }) {
     let prevTarget = props.prevTarget
     let setCurrentTarget = props.setCurrentTarget
+    const navigate = useNavigate();
 
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);
@@ -37,6 +37,10 @@ const HomePageLayout = React.memo(function HomePageLayout({ children, drawerItem
         if (!isClosing) {
             setMobileOpen(!mobileOpen);
         }
+    };
+
+    const handleLogout = () => {
+        navigate('/');
     };
 
     const drawer = (<>
@@ -73,7 +77,7 @@ const HomePageLayout = React.memo(function HomePageLayout({ children, drawerItem
         </Box>
 
         {drawerItems}
-        <IconButton style={{ position: 'absolute', bottom: '0', right: "50%", left: "50%", color: "#2D9596" }}>
+        <IconButton style={{ position: 'absolute', bottom: '0', right: "50%", left: "50%", color: "#2D9596" }} onClick={handleLogout}>
             <Logout fontSize='large'></Logout>
         </IconButton>
     </>);

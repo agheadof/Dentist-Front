@@ -1,0 +1,111 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "name": "John Smith",
+            "email": "john.smith@example.com",
+            "phone": "+1234567890",
+            "address": "123 Main St, New York, NY",
+            "type": "patient"
+        },
+        {
+            "id": "2",
+            "name": "Emily Johnson",
+            "email": "emily.j@example.com",
+            "phone": "+1987654321",
+            "address": "456 Oak Ave, Los Angeles, CA",
+            "type": "doctor"
+        },
+        {
+            "id": "3",
+            "name": "Michael Brown",
+            "email": "m.brown@example.com",
+            "phone": "+1122334455",
+            "address": "789 Pine Rd, Chicago, IL",
+            "type": "employee"
+        },
+        {
+            "id": "4",
+            "name": "Sarah Davis",
+            "email": "sarah.d@example.com",
+            "phone": "+1555666777",
+            "address": "321 Elm St, Houston, TX",
+            "type": "patient"
+        },
+        {
+            "id": "5",
+            "name": "David Wilson",
+            "email": "d.wilson@example.com",
+            "phone": "+1999888777",
+            "address": "654 Maple Dr, Miami, FL",
+            "type": "doctor"
+        }
+    ],
+    "invoices": [
+        {
+            "id": "1",
+            "laboratory": "Central Lab",
+            "date": "2023-05-15",
+            "totalPrice": 1500
+        },
+        {
+            "id": "2",
+            "laboratory": "City Medical",
+            "date": "2023-05-20",
+            "totalPrice": 2000
+        },
+        {
+            "id": "3",
+            "laboratory": "HealthTech",
+            "date": "2023-05-25",
+            "totalPrice": 1800
+        }
+    ],
+    "expenses": [
+        {
+            "id": "1",
+            "item": "Equipment",
+            "amount": 5,
+            "type": "Purchase",
+            "date": "2023-05-10",
+            "cost": 5000,
+            "note": "New microscopes"
+        },
+        {
+            "id": "2",
+            "item": "Electricity",
+            "amount": 1,
+            "type": "Utility",
+            "date": "2023-05-01",
+            "cost": 800,
+            "note": "Monthly bill"
+        },
+        {
+            "id": "3",
+            "item": "Supplies",
+            "amount": 100,
+            "type": "Consumables",
+            "date": "2023-05-18",
+            "cost": 1200,
+            "note": "Lab supplies"
+        }
+    ],
+    "financeSummary": [
+        {
+            "fName": "expenses",
+            "cost": 7000
+        },
+        {
+            "fName": "bills",
+            "cost": 1500
+        },
+        {
+            "fName": "doctors share",
+            "cost": 3000
+        },
+        {
+            "fName": "salaries",
+            "cost": 10000
+        }
+    ]
+}

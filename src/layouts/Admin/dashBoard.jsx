@@ -1,4 +1,3 @@
-
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -133,16 +132,28 @@ export default function DashBord({ ...props }) {
         { name: 'Phone', value: '096541238' },
     ];
 
+    // Fake data for the first table
+    const inventoryData = [
+        { id: 1, Item: 'Dental Implant', Amount: '50', Pieces: 10, Price: 200, 'Total Price': 2000 },
+        { id: 2, Item: 'Orthodontic Brackets', Amount: '100', Pieces: 20, Price: 50, 'Total Price': 1000 },
+        { id: 3, Item: 'Composite Filling', Amount: '200', Pieces: 40, Price: 25, 'Total Price': 1000 },
+        { id: 4, Item: 'Root Canal Files', Amount: '75', Pieces: 15, Price: 30, 'Total Price': 450 },
+        { id: 5, Item: 'Dental Crown', Amount: '30', Pieces: 6, Price: 150, 'Total Price': 900 },
+    ];
 
-
-
-
-
+    // Fake data for the second table
+    const financeData = [
+        { id: 1, teatment: 'Teeth Whitening', status: 'Completed', cost: 300, profit: 150, action: '' },
+        { id: 2, teatment: 'Root Canal', status: 'In Progress', cost: 800, profit: 400, action: '' },
+        { id: 3, teatment: 'Dental Implant', status: 'Scheduled', cost: 1200, profit: 600, action: '' },
+        { id: 4, teatment: 'Orthodontic Treatment', status: 'Ongoing', cost: 3000, profit: 1500, action: '' },
+        { id: 5, teatment: 'Cavity Filling', status: 'Completed', cost: 150, profit: 75, action: '' },
+    ];
 
     return (
         <>
             <Grid container spacing={2}>
-                <Grid item sx={7}>
+                <Grid item xs={12} md={9}>
                     <ThemeProvider theme={theme}>
                         <DataGrid
 
@@ -151,7 +162,7 @@ export default function DashBord({ ...props }) {
                             pageSizeOptions={[PAGE_SIZE]}
 
                             sx={{
-                                height: "70%",
+                                height: 400, // Set a fixed height
                                 '& .MuiDataGrid-cell--textLeft': { textAlign: 'center' },
                                 '& .MuiDataGrid-toolbarContainer': {
                                     '& .MuiButton-text': {
@@ -188,7 +199,9 @@ export default function DashBord({ ...props }) {
                                 pagination: CustomPagination,
                             }}
                             checkboxSelection
-                            disableRowSelectionOnClick />
+                            disableRowSelectionOnClick
+                            rows={inventoryData}
+                        />
                     </ThemeProvider>
                     <Typography component={'h2'} variant='h6' onClick={() => setCurrentTarget("tratment")} sx={{ mt: 8, mb: 2, bgcolor: '#2D9596', color: 'white', width: '180px', textAlign: 'center', borderRadius: "10px" }}>+ Add Tratment</Typography>
 
@@ -200,7 +213,7 @@ export default function DashBord({ ...props }) {
                             pageSizeOptions={[PAGE_SIZE]}
 
                             sx={{
-                                height: "70%",
+                                height: 400, // Set a fixed height
                                 '& .MuiDataGrid-cell--textLeft': { textAlign: 'center' },
                                 '& .MuiDataGrid-toolbarContainer': {
                                     '& .MuiButton-text': {
@@ -237,35 +250,32 @@ export default function DashBord({ ...props }) {
                                 pagination: CustomPagination,
                             }}
                             checkboxSelection
-                            disableRowSelectionOnClick />
+                            disableRowSelectionOnClick
+                            rows={financeData}
+                        />
                     </ThemeProvider>
                 </Grid>
-                <Grid item sx={5}>
-                    <Box >
-                        <Box sx={{ display: "flex" }}>
-                            <Avatar variant='rounded' sx={{ width: { xs: '0', sm: '0', lg: '70px' }, height: { xs: '0', sm: '0', lg: '70px' }, mt: 1, mr: 1, borderRadius: "50%" }} />
-                            <Typography component={'h2'} variant='h6' sx={{ mt: 3, ml: 1 }}>Dr.Bashar</Typography>
+                <Grid item xs={12} md={3}>
+                    <Box sx={{ position: 'sticky', top: 20 }}>
+                        <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", mb: 2 }}>
+                            <Typography component={'h2'} variant='h6' sx={{ mr: 1 }}>Dr. Bashar</Typography>
+                            <Avatar variant='rounded' sx={{ width: 50, height: 50, borderRadius: "50%" }} />
                             <Button
-                                endIcon={
-                                    open ? <ExpandLess /> : <ExpandMore />
-                                }
+                                endIcon={open ? <ExpandLess /> : <ExpandMore />}
                                 onClick={handleClick}
-                            >
-
-                            </Button>
+                            />
                         </Box>
 
-                        <Box >
-                            <Collapse in={open}>
-                                <List>
-                                    {userdata.map((item, index) => (
-                                        <ListItem key={index}>
-                                            <ListItemText primary={item.name} secondary={item.value} />
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            </Collapse>
-                        </Box>
+                        <Collapse in={open}>
+                            <List>
+                                {userdata.map((item, index) => (
+                                    <ListItem key={index}>
+                                        <ListItemText primary={item.name} secondary={item.value} />
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Collapse>
+
                         <Box sx={{ bgcolor: "lightgray", borderRadius: "20px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", height: "50px", mt: 5 }} >
                             <Box sx={{ display: "flex", justifyContent: "start", bgcolor: "white", borderRadius: "20px", width: "95%", height: "40px", paddingTop: 1 }}>
                                 <Avatar variant='rounded' sx={{ width: { xs: '0', sm: '0', lg: '25px' }, height: { xs: '0', sm: '0', lg: '25px' }, mr: -1, borderRadius: "50%" }} />
@@ -279,7 +289,7 @@ export default function DashBord({ ...props }) {
 
 
                         </Box>
-                        <Card sx={{mt:5}}>
+                        <Card sx={{ mt: 5 }}>
                             <CardContent >
                                 <Typography variant="h6" gutterBottom>
                                     Patients per Doctor
@@ -290,8 +300,6 @@ export default function DashBord({ ...props }) {
 
 
                     </Box>
-
-
                 </Grid>
             </Grid>
 

@@ -12,6 +12,7 @@ import {
 
 import { ThemeProvider } from '@mui/material/styles';
 import DrButton from '../../components/DrButton'
+import patientData from './doctorFakedata.json';
 
 
 export default function ViewPatient({ ...props }) {
@@ -34,7 +35,8 @@ export default function ViewPatient({ ...props }) {
     let theme = props.theme
     let customToolbar = props.customToolbar
     let CustomPagination = props.CustomPagination
-    let patient = props.patient
+    const patient = patientData.patients[0]
+    const treatments = patientData.treatments
     let setCurrentTarget = props.setCurrentTarget
 
 
@@ -46,11 +48,11 @@ export default function ViewPatient({ ...props }) {
 
     const financeCol = [
         { field: 'date', headerName: 'Date', minWidth: '150', headerAlign: 'center' },
-        { field: 'teatment', headerName: 'Teatment', minWidth: '120', resizable: false, headerAlign: 'center' },
+        { field: 'treatment', headerName: 'Treatment', minWidth: '120', resizable: false, headerAlign: 'center' },
         { field: 'tooth', headerName: 'Tooth', minWidth: '120', resizable: false, headerAlign: 'center' },
         { field: 'status', headerName: 'Status', minWidth: '120', resizable: false, headerAlign: 'center' },
-        { field: 'note', headerName: 'Note', minWidth: '120', resizable: false, headerAlign: 'center' },
-        
+        { field: 'note', headerName: 'Note', minWidth: '300', headerAlign: 'center' },
+
 
     ];
 
@@ -71,7 +73,7 @@ export default function ViewPatient({ ...props }) {
 
     return (
         <>
-          
+
             <Grid container>
                 <Grid item xs={false} sm={2} md={2}>
                     <Avatar variant='rounded' sx={{ width: { xs: '0', sm: '0', lg: '150px' }, height: { xs: '0', sm: '0', lg: '150px' }, mt: 10, mr: 3 }} />
@@ -122,14 +124,14 @@ export default function ViewPatient({ ...props }) {
 
                             </TableBody>
                         </Table>
-                        <Box sx={{display:"flex", justifyContent:"space-between"}}>
-                        <Typography component={'h2'} variant='h6' sx={{ mt: 8, bgcolor: '#2D9596', color: 'white', width: '180px', textAlign: 'center' }}>Patient History</Typography>
-                        
-                        <Typography component={'h2'} variant='h6' onClick={() => setCurrentTarget("tratment")} sx={{ mt: 8, bgcolor: '#2D9596', color: 'white', width: '180px', textAlign: 'center' ,borderRadius:"10px" }}>+ Add Tratment</Typography>
-                        
+                        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                            <Typography component={'h2'} variant='h6' sx={{ mt: 8, bgcolor: '#2D9596', color: 'white', width: '180px', textAlign: 'center' }}>Patient History</Typography>
+
+                            <Typography component={'h2'} variant='h6' onClick={() => setCurrentTarget("tratment")} sx={{ mt: 8, bgcolor: '#2D9596', color: 'white', width: '180px', textAlign: 'center', borderRadius: "10px" }}>+ Add Tratment</Typography>
+
 
                         </Box>
-                       <ThemeProvider theme={theme}>
+                        <ThemeProvider theme={theme}>
                             <DataGrid
 
                                 paginationModel={paginationModel}
@@ -173,10 +175,12 @@ export default function ViewPatient({ ...props }) {
                                     pagination: CustomPagination,
                                 }}
                                 checkboxSelection
-                                disableRowSelectionOnClick />
+                                disableRowSelectionOnClick
+                                rows={treatments}
+                            />
                         </ThemeProvider>
                     </Box>
-                 
+
                 </Grid>
             </Grid>
         </>

@@ -1,6 +1,3 @@
-
-
-
 import * as React from 'react';
 import DrButton from '../../components/DrButton'
 import { DeleteOutlineOutlined, EditNoteOutlined } from '@mui/icons-material';
@@ -33,6 +30,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Card, CardContent } from '@mui/material';
+import doctorFakedata from './doctorFakedata.json';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -97,66 +95,12 @@ export default function DashBord({ ...props }) {
 
     ];
     const userdata = [
-        { name: 'Dr.name', value: 'Bashar' },
-        { name: 'Email', value: 'jana@example.com' },
-        { name: 'Phone', value: '096541238' },
+        { name: 'Dr.name', value: doctorFakedata.doctorInfo.name },
+        { name: 'Email', value: doctorFakedata.doctorInfo.email },
+        { name: 'Phone', value: doctorFakedata.doctorInfo.phone },
     ];
 
-    const rows = [
-        {
-            id: '6',
-            name: 'raghad',
-            date: 'Feb 3, 2023',
-            time: '13:05',
-            action: 'view',
-            firstName: ' raghad',
-            lastName: 'yousef',
-            doctor: 'Aragon',
-            sex: 'female',
-            address: 'Homs',
-            phone: '+963912345678',
-            age: "24"
-        },
-        {
-            id: '7',
-            name: 'raghad',
-            date: 'Feb 3, 2023',
-            time: '13:05',
-            action: 'view',
-            firstName: ' raghad',
-            lastName: 'yousef',
-            doctor: 'Aragon',
-            sex: 'female',
-            address: 'Homs',
-            phone: '+963912345678',
-            age: "24"
-        }, {
-            id: '2',
-            name: 'raghad',
-            date: 'Feb 3, 2023',
-            time: '13:05',
-            action: 'view',
-            firstName: ' raghad',
-            lastName: 'yousef',
-            doctor: 'Aragon',
-            sex: 'female',
-            address: 'Homs',
-            phone: '+963912345678',
-            age: "24"
-        }, {
-            id: '1',
-            name: 'raghad',
-            date: 'Feb 3, 2023',
-            time: '13:05',
-            action: 'view',
-            firstName: ' raghad',
-            lastName: 'yousef',
-            doctor: 'Aragon',
-            sex: 'female',
-            address: 'Homs',
-            phone: '+963912345678',
-            age: "24"
-        },]
+    const rows = doctorFakedata.patients;
 
     const IconWithNumber = ({ icon: Icon, number, label }) => (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: "20%", height: "20%" }}>
@@ -175,15 +119,7 @@ export default function DashBord({ ...props }) {
             <strong style={{ color: "#2D9596" }}>·</strong>
         </Box>
     );
-    const data = [
-        { date: '2024-07-25', visitors: 25 },
-        { date: '2024-07-26', visitors: 18 },
-        { date: '2024-07-27', visitors: 30 },
-        { date: '2024-07-28', visitors: 22 },
-        { date: '2024-07-29', visitors: 28 },
-        { date: '2024-07-30', visitors: 35 },
-        { date: '2024-07-31', visitors: 20 },
-    ];
+    const data = doctorFakedata.visitorData;
 
     const chartData = {
         labels: data.map(item => item.date),
@@ -201,13 +137,13 @@ export default function DashBord({ ...props }) {
     return (
         <>
             <Grid container spacing={2}>
-                <Grid item sx={7}>
+                <Grid item xs={7}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconWithNumber icon={GroupIcon} number={413} label="Total Patient" />
+                        <IconWithNumber icon={GroupIcon} number={doctorFakedata.statistics.totalPatients} label="Total Patient" />
                         {separator}
-                        <IconWithNumber icon={PersonAddIcon} number={63} label="New Patient" />
+                        <IconWithNumber icon={PersonAddIcon} number={doctorFakedata.statistics.newPatients} label="New Patient" />
                         {separator}
-                        <IconWithNumber icon={PersonIcon} number={350} label="Old Patient" />
+                        <IconWithNumber icon={PersonIcon} number={doctorFakedata.statistics.oldPatients} label="Old Patient" />
                     </Box>
                     <Typography component={'h2'} variant='h4' sx={{ mt: 5 }}>My paitient</Typography>
                     <ThemeProvider theme={theme}>
@@ -220,7 +156,7 @@ export default function DashBord({ ...props }) {
                             sx={{
                                 mt: 0,
                                 width: "100%",
-                                height: "200px",
+                                height: "50%",
                                 '& .MuiDataGrid-cell--textLeft': { textAlign: 'center' },
                                 '& .MuiDataGrid-toolbarContainer': {
                                     '& .MuiButton-text': {
@@ -250,7 +186,7 @@ export default function DashBord({ ...props }) {
                             initialState={{
                                 pagination: {
                                     paginationModel: {
-                                        pageSize: 5,
+                                        pageSize: 4,
                                     },
                                 },
                             }}
@@ -264,49 +200,41 @@ export default function DashBord({ ...props }) {
 
                     <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
                         <DrButton size={'small'} style={{ margin: '5px' }} onClick={() => setCurrentTarget("paitients")}>View all</DrButton>
-
                     </Box>
-                    <Card sx={{width:"50%",height:"250px",mt:-2}}>
-                        <CardContent>
-                            <Typography variant="h6" gutterBottom>
-                                Daily Visitors
-                            </Typography>
-                            <Bar data={chartData} options={{ responsive: true}}  />
-                        </CardContent>
-                    </Card>
+
+
                 </Grid>
-                <Grid item sx={5}>
-                    <Box >
-                        <Box sx={{ display: "flex" }}>
-                            <Avatar variant='rounded' sx={{ width: { xs: '0', sm: '0', lg: '70px' }, height: { xs: '0', sm: '0', lg: '70px' }, mt: 1, mr: 1, borderRadius: "50%" }} />
-                            <Typography component={'h2'} variant='h6' sx={{ mt: 3, ml: 1 }}>Dr.Bashar</Typography>
+                <Grid item xs={5}>
+                    <Box sx={{ position: 'absolute', top: 0, right: 0, m: 2 }}>
+                        <Box sx={{ display: "flex", alignItems: 'center', justifyContent: 'flex-end' }}>
+                            <Typography component={'h2'} variant='h6' sx={{ mr: 1 }}>Dr.Bashar</Typography>
+                            <Avatar variant='rounded' sx={{ width: '50px', height: '50px', borderRadius: "50%" }} />
                             <Button
-                                endIcon={
-                                    open ? <ExpandLess /> : <ExpandMore />
-                                }
+                                endIcon={open ? <ExpandLess /> : <ExpandMore />}
                                 onClick={handleClick}
-                            >
-
-                            </Button>
+                            />
                         </Box>
 
-                        <Box >
-                            <Collapse in={open}>
-                                <List>
-                                    {userdata.map((item, index) => (
-                                        <ListItem key={index}>
-                                            <ListItemText primary={item.name} secondary={item.value} />
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            </Collapse>
-                        </Box>
-
+                        <Collapse in={open}>
+                            <List>
+                                {userdata.map((item, index) => (
+                                    <ListItem key={index}>
+                                        <ListItemText primary={item.name} secondary={item.value} />
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Collapse>
+                        <Card sx={{ width: "100%", height: "250px", mt: 10 }}>
+                            <CardContent>
+                                <Typography variant="h6" gutterBottom>
+                                    Daily Visitors
+                                </Typography>
+                                <Bar data={chartData} options={{ responsive: true }} />
+                            </CardContent>
+                        </Card>
                     </Box>
-
                 </Grid>
             </Grid>
-
         </>
     )
 }

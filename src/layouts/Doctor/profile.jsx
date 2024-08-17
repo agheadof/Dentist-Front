@@ -12,6 +12,8 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import DrButton from '../../components/DrButton'
 
+import fakeData from './doctorFakedata.json';
+
 
 export default function Profile({ ...props }) {
     let theme = props.theme
@@ -31,18 +33,12 @@ export default function Profile({ ...props }) {
 
     ];
     let date = new Date()
-    const financeRows = [
-        {
-            id: '1',
-            date: date.toISOString().split('T')[0],
-            amount: '300,000',
-            note: 'Regular'
-
-        },]
+    const { doctorPrInfo, financialRecords } = fakeData;
+    const financeRows = financialRecords;
 
     return (
         <>
-            <Link to={'/forgot'} state={{ job: 'recep' }} style={{ display: 'flex', justifyContent: 'end', textDecoration: 'none' }}>
+            <Link to={'/reset'} state={{ job: 'recep' }} style={{ display: 'flex', justifyContent: 'end', textDecoration: 'none' }}>
                 <DrButton>Change Password</DrButton>
             </Link>
             <Grid container>
@@ -60,23 +56,11 @@ export default function Profile({ ...props }) {
                                     key={''}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Name: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Name: {doctorPrInfo.name}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Email: </Typography>
-                                        <Divider variant='inset' />
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow
-                                    key={''}
-                                >
-                                    <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Address: </Typography>
-                                        <Divider variant='inset' />
-                                    </TableCell>
-                                    <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Salary: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Email: {doctorPrInfo.email}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                 </TableRow>
@@ -84,11 +68,23 @@ export default function Profile({ ...props }) {
                                     key={''}
                                 >
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Phone: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Address: {doctorPrInfo.address}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                     <TableCell sx={{ border: 'none' }}>
-                                        <Typography sx={{ display: 'inline-block' }}>Sex: </Typography>
+                                        <Typography sx={{ display: 'inline-block' }}>Salary: {doctorPrInfo.salary}</Typography>
+                                        <Divider variant='inset' />
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow
+                                    key={''}
+                                >
+                                    <TableCell sx={{ border: 'none' }}>
+                                        <Typography sx={{ display: 'inline-block' }}>Phone: {doctorPrInfo.phone}</Typography>
+                                        <Divider variant='inset' />
+                                    </TableCell>
+                                    <TableCell sx={{ border: 'none' }}>
+                                        <Typography sx={{ display: 'inline-block' }}>Sex: {doctorPrInfo.sex}</Typography>
                                         <Divider variant='inset' />
                                     </TableCell>
                                 </TableRow>
