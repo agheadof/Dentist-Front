@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Dentist-Front/static/css/main.bc460c70.css",
+    "main.js": "/Dentist-Front/static/js/main.7c7e6549.js",
+    "static/js/453.b402d719.chunk.js": "/Dentist-Front/static/js/453.b402d719.chunk.js",
+    "static/media/AccountTypeCover.jpeg": "/Dentist-Front/static/media/AccountTypeCover.9880095a346e2ea60c41.jpeg",
+    "static/media/reset.png": "/Dentist-Front/static/media/reset.55a70a421de5b1ec86ce.png",
+    "static/media/login.jpg": "/Dentist-Front/static/media/login.fd1cbef2311e7dcb4f85.jpg",
+    "static/media/code.png": "/Dentist-Front/static/media/code.b3e7a30642adb51e8539.png",
+    "static/media/forgot.png": "/Dentist-Front/static/media/forgot.4d422953fee03445f28e.png",
+    "static/media/button.png": "/Dentist-Front/static/media/button.a16c974e8ba65369c680.png",
+    "static/media/circle.png": "/Dentist-Front/static/media/circle.d51a003c39634854e25d.png",
+    "index.html": "/Dentist-Front/index.html",
+    "main.bc460c70.css.map": "/Dentist-Front/static/css/main.bc460c70.css.map",
+    "main.7c7e6549.js.map": "/Dentist-Front/static/js/main.7c7e6549.js.map",
+    "453.b402d719.chunk.js.map": "/Dentist-Front/static/js/453.b402d719.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc460c70.css",
+    "static/js/main.7c7e6549.js"
+  ]
+}
